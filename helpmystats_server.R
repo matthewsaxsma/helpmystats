@@ -4,14 +4,15 @@ server <- function(input, output) {
     set.seed(04172000)
     x <- rnorm(input$samplesize,0,1)
     x <- scale(x,center = TRUE,scale = TRUE)
-    y <- input$correlation*x + sqrt(1 - (input$correlation)^2)*rnorm(input$samplesize,0,1)
+    noise <- scale(rnorm(input$samplesize,0,1),center = TRUE, scale = TRUE)
+    y <- input$correlation*x + sqrt(1 - (input$correlation)^2)*noise
     y <- scale(y,center = TRUE, scale = TRUE)
     plot(
       x,
       y,
       xlim=c(-3,3),
       ylim=c(-3,3),
-      main = paste("Correlation =", input$correlation),
+      main = paste("Correlation =", round(cor(x,y),3)),
       pch=20,
       bty = "n"
       )
@@ -22,37 +23,6 @@ server <- function(input, output) {
       col="darkgray"
       )
   })
-  
-  
-  
-  # output$correlationplot <- renderPlot({
-  #   xdat = function() {
-  #     # data generation function
-  #     dat <- mvrnorm(
-  #       input$samplesize,
-  #       mu = c(0, 0),
-  #       Sigma = matrix(c(
-  #         1, input$correlation, input$correlation, 1
-  #       ), nrow = 2),
-  #       empirical = TRUE
-  #     )
-  #     x = dat[, 1]
-  #     y = dat[, 2]
-  #     plot(
-  #       x,
-  #       y,
-  #       xlim = c(-3, 3),
-  #       ylim = c(-3, 3),
-  #       main = paste("Correlation = ", input$correlation),
-  #       pch = 20,
-  #     )
-  #     abline(lm(y ~ x),
-  #            lty = 2,
-  #            lwd = 2,
-  #            col = "darkgray")
-  #   }
-  #   xdat() # generate the data and plot
-  # })
   
   prob = runif(250, min = 0, max = 1)
   odds = prob / (1 - prob)
