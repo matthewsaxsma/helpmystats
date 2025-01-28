@@ -1,1 +1,1 @@
-I am creating this Shiny application to give people a hands-on tool to learn statistics. It's on thing to read a textbook and do homework... it's a different thing to see exactly how the concepts behave when you interact with them.
+I am creating this Shiny application to give people a hands-on tool to learn statistics. It's one thing to read a textbook and do homework... it's a different thing to see exactly how the concepts behave when you interact with them.
