@@ -39,11 +39,11 @@ ui <- fluidPage(
     choices = list("Probability", "Odds", "Log Odds")
   ),
   
-  plotOutput(
+  div(style="display: flex; justify-content: center",plotOutput(
     outputId = "oddsplot",
     width = "500px",
     height = "500px"
-  ),
+  )),
   
   
   
@@ -76,10 +76,10 @@ ui <- fluidPage(
     max = 1000
   ),
   
-  plotOutput(
+  div(style="display:flex; justify-content: center",plotOutput(
     outputId = "logisticequationplot",
     height = "500px",
     hover = "plot_hover"
-  ),
+  )),
   verbatimTextOutput("info")
 )
