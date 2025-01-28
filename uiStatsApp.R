@@ -1,100 +1,49 @@
 ui <- page_navbar(
   title = tags$b("helpmystats."),
   id = "page",
-  # bootswatch_themes() for list of themes
-  theme = bs_theme(bootswatch = "minty"),
-  
-  nav_panel(
-    title = "Univariate Statistics",
-    p("Univariate statistics include the measures of central tendency"),
-    layout_sidebar(
-      sidebar = sidebar(
-        actionLink("tab1", "Introduction"),
-        actionLink("tab2", "Chapter 1"),
-        actionLink("tab3", "Chapter 2")
-      ),
-        mainPanel(h3("test main panel"))
-      )
-    ),
-  
+  theme = bs_theme(bootswatch = "minty"), # bootswatch_themes() for list of themes
   nav_panel(
     title = "Univariate Statistics",
     navlistPanel(
       "Table of Contents",  # Sidebar title
-      tabPanel("Introduction", 
-               h3("Introduction"),
-               p("This is the introduction text for the textbook."),
-               numericInput(
-                 inputId = "correlation",
-                 label = "What correlation would you like to see?",
-                 value = 0,
-                 min = -1,
-                 max = 1,
-                 step = 0.1
-               ),
-               
-               numericInput(
-                 inputId = "samplesize",
-                 label = "What sample size would you like to see?",
-                 value = 100,
-                 min = 100,
-                 max = 1000,
-                 step = 100
-               ),
-               div(
-                 style = "display: flex; justify-content: center;",
+      tabPanel(title = "Introduction", 
+               card(
+                 h3("Introduction"),
+                 p("This is the introduction text for the textbook."),
+                 numericInput(
+                   inputId = "correlation",
+                   label = "What correlation would you like to see?",
+                   value = 0,
+                   min = -1,
+                   max = 1,
+                   step = 0.1
+                 ),
+                 numericInput(
+                   inputId = "samplesize",
+                   label = "What sample size would you like to see?",
+                   value = 100,
+                   min = 100,
+                   max = 1000,
+                   step = 100
+                 ),
                  plotOutput(
                    outputId = "correlationplot",
                    width = "500px",
                    height = "500px"
+                   )
                  )
-               )
-      ),
-      tabPanel("Chapter 1", 
+      ), 
+      tabPanel(title = "Chapter 1", 
                h3("Chapter 1"),
                p("This chapter covers the basics of Shiny applications.")
       ),
-      tabPanel("Chapter 2", 
+      tabPanel(title = "Chapter 2", 
                h3("Chapter 2"),
                p("This chapter discusses advanced techniques in Shiny.")
       )
     )
   ),
-  
-  
-  
-  nav_panel(
-    "Correlation",
-    "page A content",
-    numericInput(
-      inputId = "correlation",
-      label = "What correlation would you like to see?",
-      value = 0,
-      min = -1,
-      max = 1,
-      step = 0.1
-    ),
-    
-    numericInput(
-      inputId = "samplesize",
-      label = "What sample size would you like to see?",
-      value = 100,
-      min = 100,
-      max = 1000,
-      step = 100
-    ),
-    div(
-      style = "display: flex; justify-content: center;",
-      plotOutput(
-        outputId = "correlationplot",
-        width = "500px",
-        height = "500px"
-      )
-    )
-  ),
-  
-  
-  
+
   nav_panel(
     "Probability, Odds, and Log Odds",
     "page b content",
@@ -103,13 +52,11 @@ ui <- page_navbar(
       label = "X-axis:",
       choices = list("Probability", "Odds", "Log Odds")
     ),
-    
     selectInput(
       inputId = "yaxis",
       label = "Y-axis:",
       choices = list("Probability", "Odds", "Log Odds")
     ),
-    
     div(
       style = "display: flex; justify-content: center",
       plotOutput(

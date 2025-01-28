@@ -1,37 +1,63 @@
 server <- function(input, output) {
 
   output$correlationplot <- renderPlot({
-    xdat = function() {
-      # data generation function
-      dat <- mvrnorm(
-        input$samplesize,
-        mu = c(0, 0),
-        Sigma = matrix(c(
-          1, input$correlation, input$correlation, 1
-        ), nrow = 2),
-        empirical = TRUE
+    set.seed(04172000)
+    x <- rnorm(input$samplesize,0,1)
+    x <- scale(x,center = TRUE,scale = TRUE)
+    y <- input$correlation*x + sqrt(1 - (input$correlation)^2)*rnorm(input$samplesize,0,1)
+    y <- scale(y,center = TRUE, scale = TRUE)
+    plot(
+      x,
+      y,
+      xlim=c(-3,3),
+      ylim=c(-3,3),
+      main = paste("Correlation =", input$correlation),
+      pch=20,
+      bty = "n"
       )
-      x = dat[, 1]
-      y = dat[, 2]
-      plot(
-        x,
-        y,
-        xlim = c(-3, 3),
-        ylim = c(-3, 3),
-        main = paste("Correlation = ", input$correlation),
-        pch = 20,
+    abline(
+      lm(y ~ x),
+      lty=2,
+      lwd=2,
+      col="darkgray"
       )
-      abline(lm(y ~ x),
-             lty = 2,
-             lwd = 2,
-             col = "darkgray")
-    }
-    xdat() # generate the data and plot
   })
+  
+  
+  
+  # output$correlationplot <- renderPlot({
+  #   xdat = function() {
+  #     # data generation function
+  #     dat <- mvrnorm(
+  #       input$samplesize,
+  #       mu = c(0, 0),
+  #       Sigma = matrix(c(
+  #         1, input$correlation, input$correlation, 1
+  #       ), nrow = 2),
+  #       empirical = TRUE
+  #     )
+  #     x = dat[, 1]
+  #     y = dat[, 2]
+  #     plot(
+  #       x,
+  #       y,
+  #       xlim = c(-3, 3),
+  #       ylim = c(-3, 3),
+  #       main = paste("Correlation = ", input$correlation),
+  #       pch = 20,
+  #     )
+  #     abline(lm(y ~ x),
+  #            lty = 2,
+  #            lwd = 2,
+  #            col = "darkgray")
+  #   }
+  #   xdat() # generate the data and plot
+  # })
   
   prob = runif(250, min = 0, max = 1)
   odds = prob / (1 - prob)
   logodds = log(odds)
+  
   output$oddsplot <- renderPlot({
     if (input$xaxis == "Probability") {
       x = prob
@@ -87,7 +113,6 @@ server <- function(input, output) {
         x[t + 1] = R * x[t] * (1 - x[t])
       }
     }
-    
     points(time,
            x,
            pch = 21,
@@ -101,9 +126,7 @@ server <- function(input, output) {
       col = "red",
       cex = 1.5
     )
-    
   })
-  
 }
 
 
