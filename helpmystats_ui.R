@@ -3,9 +3,10 @@ ui <- page_navbar(
   id = "page",
   theme = bs_theme(bootswatch = "minty"), # bootswatch_themes() for list of themes
   nav_panel(
-    title = "Univariate Statistics",
+    title = "Correlation",
     navlistPanel(
       "Table of Contents",  # Sidebar title
+      widths = c(3,9),
       tabPanel(title = "Introduction", 
                card(
                  h3("Introduction"),
@@ -45,7 +46,7 @@ ui <- page_navbar(
   ),
 
   nav_panel(
-    "Probability, Odds, and Log Odds",
+    title = "Probability, Odds, and Log Odds",
     "page b content",
     selectInput(
       inputId = "xaxis",
@@ -66,43 +67,42 @@ ui <- page_navbar(
       )
     )
   ),
-  nav_panel(
-    "Logistic Function",
-    "Page C content",
-    numericInput(
-      inputId = "initialvalue",
-      label = "Initial Value:",
-      value = .5,
-      min = 0,
-      max = 1,
-      step = 0.05
-    ),
-    
-    numericInput(
-      inputId = "controlparameter",
-      value = 0.5,
-      step = 0.05,
-      label = "Control Parameter:",
-      min = 0,
-      max = 4
-    ),
-    
-    numericInput(
-      inputId = "time",
-      label = "Length of Time",
-      value = 100,
-      step = 10,
-      min = 10,
-      max = 1000
-    ),
-    
-    div(
-      style = "display:flex; justify-content: center",
-      plotOutput(
-        outputId = "logisticequationplot",
-        height = "500px",
-        hover = "plot_hover"
-      )
-    )
-  )
+  # nav_panel(
+  #   title =  "Logistic Function",
+  #   "Page C content",
+  #   numericInput(
+  #     inputId = "initialvalue",
+  #     label = "Initial Value:",
+  #     value = .5,
+  #     min = 0,
+  #     max = 1,
+  #     step = 0.05
+  #   ),
+  # 
+  #   numericInput(
+  #     inputId = "controlparameter",
+  #     value = 0.5,
+  #     step = 0.05,
+  #     label = "Control Parameter:",
+  #     min = 0,
+  #     max = 4
+  #   ),
+  # 
+  #   numericInput(
+  #     inputId = "time",
+  #     label = "Length of Time",
+  #     value = 100,
+  #     step = 10,
+  #     min = 10,
+  #     max = 1000
+  #   ),
+  #   div(
+  #     style = "display:flex; justify-content: center",
+  #     plotOutput(
+  #       outputId = "logisticequationplot",
+  #       height = "500px",
+  #       hover = "plot_hover"
+  #     )
+  #   )
+  # )
 )
