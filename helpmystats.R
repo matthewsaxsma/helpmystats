@@ -10,5 +10,3 @@ source("helpmystats_server.R")
 # ShinyApp function ------------------------------------------------------------
 shinyApp(ui = ui, server = server, options = list(height = "750px"))
 
-
-

@@ -1,0 +1,11 @@
+.flex-row {
+  display: flex;
+  gap: 7.5%;             /* Space between items */
+  align-items: center;   /* Vertical alignment */
+}
+
+
+.numeric-input-wrapper input[type="number"] {
+  width: 80px !important;
+  /* You can adjust 80px to whatever width you prefer */
+}
