@@ -1,11 +1,37 @@
-.flex-row {
-  display: flex;
-  gap: 7.5%;             /* Space between items */
-  align-items: center;   /* Vertical alignment */
+/* for divs */
+
+.paragraph-text {
+  width: 45%; 
+  margin: 0 auto; 
+  text-align: left;
+}
+
+.image-div {
+  width: 30%;
+  margin: 0 auto;
+  border: none; /* 1px solid black; */
+  text-align: center
 }
 
 
+/* .images {
+  width: 50%;
+  height: auto;
+  justify-content: center; /* Center the image */
+/* } 
+
+/* for div tags */
+.button-row {
+  margin: 0 auto;
+  width: 40%;
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: 10%;              /* Space between buttons */
+  border: solid black;
+}
+
+/* applies to numericInput( ) */
 .numeric-input-wrapper input[type="number"] {
-  width: 80px !important;
+  width: 40% !important;
   /* You can adjust 80px to whatever width you prefer */
 }
