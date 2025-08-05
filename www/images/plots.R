@@ -1,20 +1,31 @@
 tdss <- apply(expand.grid(1:6,1:6), MARGIN = 1,FUN = sum)
 
-hist(
-  tdss,
-  breaks = 14
-  )
-axis(
-  side = 1,
-  at = 2:12,
-  labels = TRUE,
-  tick = TRUE
-  )
+png("tdss_bp.png",width = 1130,height = 774)
 
+par(mar = c(6,6,4,6))
 barplot(
   table(tdss),
-  main = "Sample Space of\nSum of Two Die"
+  main = "",
+  cex.names = 2,
+  cex.axis = 2
   )
+
+mtext(
+  "Sum",
+  side = 1,
+  outer = TRUE,
+  line = -2,
+  cex = 4
+)
+mtext(
+  "Count",
+  side = 2,
+  outer = TRUE,
+  line = -3.5,
+  cex = 4
+)
+
+dev.off()
 
 curve(dnorm(x, mean = 0, sd = 1), from = -4, to = 4,
       ylab = "Density", main = "Standard Normal Distribution",

@@ -7,10 +7,10 @@
 }
 
 .image-div {
-  width: 30%;
+  width: 60%;
   margin: 0 auto;
-  border: none; /* 1px solid black; */
-  text-align: center
+  border: none;
+  text-align: center;
 }
 
 

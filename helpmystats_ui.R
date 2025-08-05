@@ -7,21 +7,44 @@ ui <- page_navbar(
   theme = bs_theme(bootswatch = "minty"),
 
   nav_panel(
-    title = "Random Variables",
+    title = "Random Variables, Statistics",
     div(
       class = "paragraph-text",
-      HTML(content_random_variables)
+      HTML(content_random_variables1)
     ),
     div(
       class = "image-div",
       img(
-        style = "width: 130%; height: auto; margin: left; display: block;",
+        style = "width: 400px; height: auto; margin: 0 auto; display: block;",
         src = "images/sample_space.png"
       )
     ),
     div(
       class = "paragraph-text",
       HTML(content_random_variables2)
+    ),
+    div(
+      class = "image-div",
+      img(
+        style = "width: 400px; height: auto; margin: 0 auto; display: block;",
+        src = "images/sum_sample_space.png"
+      )
+    ),
+    div(
+      class = "paragraph-text",
+      HTML(content_random_variables3)
+    ),
+    div(
+      class = "image-div",
+      img(
+        style = "width: 400px; height: auto; margin: 0 auto; display: block;",
+        src = "images/tdss_bp.png"
+      )
+    ),
+    div(
+      class = "paragraph-text",
+      HTML(content_statistics1)
+      )
     )
   ),
   nav_panel(
@@ -33,7 +56,7 @@ ui <- page_navbar(
     div(
       class = "image-div",
       img(
-        style = "width: 100%; height: auto; margin: 0 auto; display: block;",
+        style = "width: 65%; height: auto; margin: 0 auto; display: block;",
         src = "images/std_normal.png"
       ),
     ),
@@ -44,7 +67,7 @@ ui <- page_navbar(
     div(
       class = "image-div",
       img(
-        style = "width: 100%; height: auto; margin: 0 auto; display: block;",
+        style = "width: 65%; height: auto; margin: 0 auto; display: block;",
         src = "images/chisq.png"
       )
     )

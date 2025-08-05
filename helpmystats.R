@@ -1,11 +1,11 @@
 # source packages --------------------------------------------------------------
-source("helpmystats_packages.R")
+source("helpmystats_P.R")
 
 # user interface ---------------------------------------------------------------
-source("helpmystats_ui.R")
+source("helpmystats_UI.R")
 
 # server -----------------------------------------------------------------------
-source("helpmystats_server.R")
+source("helpmystats_SERVER.R")
 
 # ShinyApp function ------------------------------------------------------------
 shinyApp(ui = ui, server = server, options = list(height = "750px"))
