@@ -1,6 +1,5 @@
 content_random_variables1 <-
-  "<h2 style='text-align: center;'>Random Variables</h1>
-  
+  "<h2 style='text-align: center;'>Random Variables</h2>
   
   <p>Random variables map the sample space of a random process
   to a real number.
@@ -35,11 +34,14 @@ Assuming the die are fair,
 
 
 content_statistics1 <- 
-"Now, we arrive at an important definition.
+"<h2 style='text-align: center;'>Statistics</h2>
+
+<p>Now, we arrive at an important definition.
 A <b>statistic</b> is a function of a random variable.
 In our dice example, we defined our random variable as the sum of two die. <br><br>
-Let's bring in the average as a function. Recall that an average is the sum of the quantities you are averaging,
- divided by the number of quantities you are averaging.
+
+Let's take the average of this random variable. The average is our function Recall that an average is the sum of the quantities you are averaging,
+divided by the number of quantities you are averaging.
 We have sums of two die, so let's take their average. I will write it out in long format so the concept is clear:
 "
 

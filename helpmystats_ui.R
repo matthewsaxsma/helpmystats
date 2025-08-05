@@ -44,6 +44,12 @@ ui <- page_navbar(
     div(
       class = "paragraph-text",
       HTML(content_statistics1)
+    ),
+    div(
+      class = "image-div",
+      img(
+        style = "width: 400px; height: auto; margin: 0 auto; display: block;",
+        src = "images/ev.png"
       )
     )
   ),
