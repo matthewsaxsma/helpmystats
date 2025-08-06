@@ -1,20 +1,20 @@
 tdss <- apply(expand.grid(1:6,1:6), MARGIN = 1,FUN = sum)
 
-hist(
-  tdss,
-  breaks = 14
-  )
-axis(
-  side = 1,
-  at = 2:12,
-  labels = TRUE,
-  tick = TRUE
-  )
 
 barplot(
   table(tdss),
-  main = "Sample Space of\nSum of Two Die"
+  main = "Sample Space of\nSum of Two Die",
+  xlab = "Sum",
+  yaxt = "n"
   )
+
+axis(
+  side = 2,
+  labels = as.character(round(0:6/36,3)),
+  at = 0:6,
+  las = 1
+  )
+
 
 curve(dnorm(x, mean = 0, sd = 1), from = -4, to = 4,
       ylab = "Density", main = "Standard Normal Distribution",
@@ -49,7 +49,7 @@ plot(
   main = "Chi-squared Distributions",
   bty = "n",
   xlab = "x",
-  ylab = ""
+  ylab = "Density"
 )
 
 x <- seq(1,15,by = 0.01)

@@ -32,7 +32,14 @@ ui <- page_navbar(
     ),
     div(
       class = "paragraph-text",
-      HTML(content_random_variables3)
+      HTML(content_disc_ex)
+    )
+  ),
+  nav_panel(
+    title = "Distributions",
+    div(
+      class = "paragraph-text",
+      HTML(content_distributions1)
     ),
     div(
       class = "image-div",
@@ -43,18 +50,8 @@ ui <- page_navbar(
     ),
     div(
       class = "paragraph-text",
-      HTML(content_statistics1)
+      HTML(content_distributions2)
     ),
-    div(
-      class = "image-div",
-      img(
-        style = "width: 400px; height: auto; margin: 0 auto; display: block;",
-        src = "images/ev.png"
-      )
-    )
-  ),
-  nav_panel(
-    title = "Distributions",
     div(
       class = "paragraph-text",
       HTML(content_normal)
