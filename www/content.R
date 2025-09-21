@@ -50,11 +50,6 @@ Since I don't know how people will respond to this survey item until I give it t
 <br><br><br><br>
 "
 
-
-
-
-
-
 # DISTRIBUTIONS
 
 content_distributions1 <- "
@@ -62,26 +57,44 @@ content_distributions1 <- "
 
 Random variables let us begin to think statistically about things in the real world. But we still need some more concepts before really applying these concepts. Let's revisit that simple two-die example."
 
-content_distributions2 <- "This bar chart nicely shows the <i>distribution</i> of the sum of two die rolls. A distribution describes the sample space of a random variable (x-axis of the barchart) and the probability measure each of element in the sample space (y-axis of the barchart). For a discrete random variable like this, this probability measure is called the mass.
+content_distributions2 <- "This bar chart nicely shows the <i>distribution</i> of the sum of two die rolls. Every random variable has a distribution. A distribution describes the sample space of random variable (x-axis of the barchart) and the probability measure each of element in the sample space (y-axis of the barchart). For a discrete random variable like this, this probability measure is called the mass.
 
 <br><br>
 So, what information is contained in the ditribution? We can see that the sum 7 has the tallest bar. This means that 7 is the most probable value of the random variable. Sums of 2 and 12 are the least probable values. This makes sense right? There are 36 unique combinations of 2 die, but how many of them yield a sum of 2?
 "
 
+content_parameters1 <- "
+Distributions are super important, and we can go a level deeper. If distributions are people, then parameters are like their personality traits. A distributions parameters further characterize the behavior of the random variable.
+
+<br><br>
+
+Let's take another simple example of a random variable: a coinflip."
+
+
+content_parameters2 <- "
+We can say that flipping a US quarter is a random process, with a sample space of heads or tails. Let's assign 0 to heads and 1 to tails. So we know the values this random variable takes, but what about the probability of the outcomes? Let's define <i>p</i> to be the probability the coinflip results in heads. If we assume the coin is fair, then <i>p</i> = 0.5. But we might have a weighted coin that doesn't give heads or tails at an equal rate. To model a weighted coin, we might make <i>p</i> be 0.1, 0.3, or 0.9."
+
 
 
 content_normal <-  "
-One of the most widely used and important distributions 
-in statistics is the 
-<a href='https://en.wikipedia.org/wiki/Normal_distribution' target=_blank style='text-decoration: none;'>normal distribution.</a>
-The distribution of a normal random variable is defined with two parameters: 
-the mean, and the standard deviation.<br><br>
+So far we've only seen discrete random variables`` and discrete distributions. A large part of statistcs involves <i>continuous distributions</i>, though. Continuous random variables can take on an uncountable infinite number of values.
 
-The mean is the center of the distribution. 
+<br><br>
+
+There are several important continuous distributions that have special names. 
+One of the most widely used and important continuous distributions is the
+<a href='https://en.wikipedia.org/wiki/Normal_distribution' target=_blank style='text-decoration: none;'>normal distribution.</a>
+The distribution of a normal random variable is defined with two parameters: the mean, and the standard deviation.
+
+<br><br>
+
+The mean is the center of the distribution.
 It is the value the distribution is centered on.
 It is typically represented with a \u03bc.
 The standard deviaton quantifies how wide the distribution is.
-It is typically represented with a \u03c3.<br><br>
+It is typically represented with a \u03c3.
+
+<br><br>
 
 A normal distribution with \u03bc = 0 and 
 \u03c3 = 1 is called a standard normal distribution.</p>"
@@ -92,8 +105,15 @@ content_chisq <-
 used in statistical analysis. 
 It is a positive distribution, which means it only takes on values greater than or equal to zero. 
 It is defined by a single parameter, the degrees of freedom.
-Degrees of freedom is often represented with <i>df</i> or the letter \u03bd (nu).<br><br>
+Degrees of freedom is often represented with <i>df</i> or the letter \u03bd (nu). Degrees of freedom are a nebulous concept for many people. We'll cover degrees of freedom more later.
+<br><br>
 "
+
+content_cont_dist <- "
+Don't worry about knowing the details of these new distributions. Just keep them in mind; you'll see them more often as you continue your statistics journey.
+
+<br><br>"
+
 
 content_sample_est <- "
 <h2 style='text-align: center;'>Sample Estimates</h1>
@@ -112,8 +132,6 @@ For now, just know that we can often estimate the expected value
 of a distribution (like the mean of a normal distribution)
 by adding up our observations 
 and dividing by the number of observations we have.</p> "
-
-
 
 
 content_statistics1 <- 
