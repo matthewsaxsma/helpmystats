@@ -5,7 +5,9 @@ ui <- page_navbar(
   id = "page",
   # bootswatch_themes() for list of themes
   theme = bs_theme(bootswatch = "minty"),
-  # RANDOM VARIABLES
+
+# Random Variables --------------------------------------------------------
+
   nav_panel(
     title = "Random Variables, Statistics",
     div(
@@ -35,7 +37,9 @@ ui <- page_navbar(
       HTML(content_disc_ex)
     )
   ),
-  # DISTRIBUTIONS
+
+# Distributions -----------------------------------------------------------
+
   nav_panel(
     title = "Distributions",
     div(
@@ -187,3 +191,4 @@ ui <- page_navbar(
   #   )
   # )
 )
+
