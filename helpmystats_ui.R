@@ -219,7 +219,7 @@ ui <- page_navbar(
         min = -1,
         max = 1,
         step = 0.1
-      ),    
+      ),
       numericInput(
         inputId = "c",
         label = "Standardized path from X to Y",

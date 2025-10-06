@@ -64,6 +64,14 @@ server <- function(input, output) {
     set.seed(417)
     # n = 10 for example purposes
     
+    ## I'm going to try to generate the data first and then run it through equations to make the relationship between the points the same
+    
+    
+    
+    
+    
+    
+    ##
     a <- 0.21
     b <- 0.21
     c <- 0.21
