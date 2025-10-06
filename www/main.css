@@ -14,6 +14,15 @@
 }
 
 
+.plot-div {
+  width: 60%;
+  margin: 0 auto;
+  border: none;
+  text-align: center;
+}
+
+
+
 /* .images {
   width: 50%;
   height: auto;

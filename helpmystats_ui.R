@@ -99,6 +99,8 @@ ui <- page_navbar(
       HTML(content_cont_dist)
     )
   ),
+
+
   # RANDOM SAMPLES
   # nav_panel(
   #   title = "Sampling Estimates",
@@ -190,5 +192,46 @@ ui <- page_navbar(
   #     )
   #   )
   # )
-)
+
+
+# Mediation ---------------------------------------------------------------
+
+  nav_panel(
+    title = "Mediation",
+    div(
+      class = "paragraph-text",
+      HTML(content_mediation_1)
+    ),
+    div(
+      class = "plot-div",
+      numericInput(
+        inputId = "a",
+        label = "Standardized path from X to M",
+        value = 0,
+        min = -1,
+        max = 1,
+        step = 0.1
+      ),
+      numericInput(
+        inputId = "b",
+        label = "Standardized path from M to Y",
+        value = 0,
+        min = -1,
+        max = 1,
+        step = 0.1
+      ),    
+      numericInput(
+        inputId = "c",
+        label = "Standardized path from X to Y",
+        value = 0,
+        min = -1,
+        max = 1,  
+        step = 0.1
+      ),
+      plotOutput(outputId = "mediation_scatterplots",
+                 width = "500px",
+                 height = "500px")
+              )
+            )
+    )
 

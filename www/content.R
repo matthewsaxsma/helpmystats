@@ -1,4 +1,5 @@
-# RANDOM VARIABLES
+
+# Random Variables --------------------------------------------------------
 
 content_random_variables1 <-
   "<h2 style='text-align: center;'>Random Variables</h2>
@@ -50,7 +51,8 @@ Since I don't know how people will respond to this survey item until I give it t
 <br><br><br><br>
 "
 
-# DISTRIBUTIONS
+# Distributions -----------------------------------------------------------
+
 
 content_distributions1 <- "
 <h2 style='text-align: center;'>Distributions</h2>
@@ -62,6 +64,7 @@ content_distributions2 <- "This bar chart nicely shows the <i>distribution</i> o
 <br><br>
 So, what information is contained in the ditribution? We can see that the sum 7 has the tallest bar. This means that 7 is the most probable value of the random variable. Sums of 2 and 12 are the least probable values. This makes sense right? There are 36 unique combinations of 2 die, but how many of them yield a sum of 2?
 "
+
 
 content_parameters1 <- "
 Distributions are super important, and we can go a level deeper. If distributions are people, then parameters are like their personality traits. A distributions parameters further characterize the behavior of the random variable.
@@ -145,3 +148,15 @@ Let's take the average of this random variable. The average is our function Reca
 divided by the number of quantities you are averaging.
 We have sums of two die, so let's take their average. I will write it out in long format so the concept is clear:
 "
+
+
+# Mediation ---------------------------------------------------------------
+
+
+content_mediation_1 <- 
+  "<h2 style='text-align: center;'> Mediation</h2>
+
+<p>Mediation is a tool that psychologists use to study <i>how</i> one variable is related to another. You can think of it like chained linear models. The simplest form of a mediation model is one where X causes M, the mediator, which causes an outcome Y.</p>
+<br>
+
+<p>Let's explore this visually.</p>"

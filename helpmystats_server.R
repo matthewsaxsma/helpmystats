@@ -1,5 +1,5 @@
 server <- function(input, output) {
-  set.seed(04172000)
+  set.seed(417)
   output$normal_distribution <- renderPlot({
     tmp <- rnorm(n = input$samplesize,
                  mean = input$mean,
@@ -17,6 +17,10 @@ server <- function(input, output) {
     )
   })
 
+
+# Correlation -------------------------------------------------------------
+
+  
   output$correlationplot <- renderPlot({
     set.seed(04172000)
     tmp <- MASS::mvrnorm(n = input$samplesize,
@@ -43,4 +47,85 @@ server <- function(input, output) {
       col = "darkgray"
     )
   })
+  
+  
+
+# Mediation ---------------------------------------------------------------
+
+  
+  # Generate data according to a simple mediation data generating model in which X is related to M, which is related to Y, and part of X is related to Y independent of it's effect through M.
+  
+  # Allow for changing the effects in the model
+  #   - Track color of different points
+  # Display the three scatterplots simultaneously
+  
+  
+  output$mediation_scatterplots <- renderPlot({
+    set.seed(417)
+    # n = 10 for example purposes
+    
+    a <- 0.21
+    b <- 0.21
+    c <- 0.21
+    
+    a <- input$a
+    b <- input$b
+    c <- input$c
+    
+    
+    rx.m <- rm.x <- a
+    rm.y <- ry.m <- b + c*a
+    rx.y <- ry.x <- b*a + c
+    
+    tryCatch(
+      expr = {
+        tmp <- MASS::mvrnorm(n = 10,
+                             mu = c(0,0,0),
+                             Sigma = matrix(c(1   , rx.m, rx.y,
+                                              rm.x, 1   , rm.y,
+                                              ry.x, ry.m,   1),
+                                            nrow = 3,
+                                            ncol = 3),
+                             empirical = TRUE)
+          
+      },
+      error = function(e){
+        error_message <- paste("An error occurred: ", e$message,".","\nMake sure your path estimates are mathematically possible.", sep = "")
+        showNotification(error_message,type = "error")
+        },
+      warning = function(w){
+        showNotification(w$message)
+        },
+      silent = TRUE
+    )
+    X <- tmp[ ,1]
+    M <- tmp[ ,2]
+    Y <- tmp[ ,3]
+    
+    par(mfrow = c(2,2))
+    plot(X,
+         M,
+         main = "X -> M",
+         xlab = "X",
+         ylab = "M")
+    # Need to suppress the warnings from abline()
+    abline(lm(M ~ X),lwd = 1, col = "red")
+    
+    plot(Y,
+         M,
+         main = "M -> Y",
+         xlab = "M",
+         ylab = "Y")
+    abline(lm(Y ~ M + X), lwd = 1, col = "green")
+    
+    plot(X,
+         Y,
+         main = "X -> Y",
+         xlab = "X",
+         ylab = "Y")
+    abline(lm(Y ~ X + M),lwd = 1, col = "blue")
+    
+  })
+  
+  
 }
