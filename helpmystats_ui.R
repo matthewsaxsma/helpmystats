@@ -203,7 +203,10 @@ ui <- page_navbar(
       HTML(content_mediation_1)
     ),
     div(
-      class = "plot-div",
+      style = "width: 550px;
+              height: 250px;
+              margin: 0 auto;
+              border: 1px solid black;",
       numericInput(
         inputId = "a",
         label = "Standardized path from X to M",
@@ -227,10 +230,10 @@ ui <- page_navbar(
         min = -1,
         max = 1,  
         step = 0.1
-      ),
-      plotOutput(outputId = "mediation_scatterplots",
-                 width = "500px",
-                 height = "500px")
+      )),
+    div(
+      class = "plot-div",
+      plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")
               )
             )
     )

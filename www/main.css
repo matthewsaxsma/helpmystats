@@ -1,34 +1,28 @@
 /* for divs */
 
 .paragraph-text {
-  width: 45%; 
+  width: 500px; 
   margin: 0 auto; 
   text-align: left;
+  border: 1px solid black;
 }
 
 
 .image-div {
-  width: 60%;
+  width: 550px;
   margin: 0 auto;
-  border: none;
+  border: 1px solid black;
   text-align: center;
 }
 
 
 .plot-div {
-  width: 60%;
+  width: 750px;
+  height: 750px;
   margin: 0 auto;
-  border: none;
-  text-align: center;
+  border: 1px solid black;
 }
 
-
-
-/* .images {
-  width: 50%;
-  height: auto;
-  justify-content: center; /* Center the image */
-/* } 
 
 /* for div tags */
 .button-row {
@@ -42,6 +36,6 @@
 
 /* applies to numericInput( ) */
 .numeric-input-wrapper input[type="number"] {
-  width: 40% !important;
+  width: 75% !important;
   /* You can adjust 80px to whatever width you prefer */
 }

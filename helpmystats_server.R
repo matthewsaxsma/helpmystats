@@ -62,40 +62,36 @@ server <- function(input, output) {
   
   output$mediation_scatterplots <- renderPlot({
     set.seed(417)
-    # n = 10 for example purposes
-    
-    ## I'm going to try to generate the data first and then run it through equations to make the relationship between the points the same
-    
-    
-    
-    
-    
-    
-    ##
-    a <- 0.21
-    b <- 0.21
-    c <- 0.21
-    
-    a <- input$a
-    b <- input$b
-    c <- input$c
-    
-    
-    rx.m <- rm.x <- a
-    rm.y <- ry.m <- b + c*a
-    rx.y <- ry.x <- b*a + c
-    
     tryCatch(
       expr = {
-        tmp <- MASS::mvrnorm(n = 10,
-                             mu = c(0,0,0),
-                             Sigma = matrix(c(1   , rx.m, rx.y,
-                                              rm.x, 1   , rm.y,
-                                              ry.x, ry.m,   1),
-                                            nrow = 3,
-                                            ncol = 3),
-                             empirical = TRUE)
-          
+        ind_normal <- MASS::mvrnorm(
+          n = 10,
+          mu = c(0, 0, 0),
+          Sigma = matrix(c(1, 0, 0,
+                           0, 1, 0,
+                           0, 0, 1),
+                         nrow = 3,
+                         ncol = 3),
+          empirical = TRUE
+        )
+        
+        
+        a <- input$a
+        b <- input$b
+        c <- input$c
+        
+        rx.m <- rm.x <- a
+        rm.y <- ry.m <- b + c*a
+        rx.y <- ry.x <- b*a + c
+        
+        desired_cov <- matrix(c(1   , rx.m, rx.y,
+                                rm.x, 1   , rm.y,
+                                ry.x, ry.m,   1),
+                              nrow = 3,
+                              ncol = 3)
+        
+        # Use the Cholesky decomposition to impose the desired covariance structure on the data
+        tmp <- ind_normal %*% chol(desired_cov)
       },
       error = function(e){
         error_message <- paste("An error occurred: ", e$message,".","\nMake sure your path estimates are mathematically possible.", sep = "")
@@ -115,7 +111,9 @@ server <- function(input, output) {
          M,
          main = "X -> M",
          xlab = "X",
-         ylab = "M")
+         ylab = "M",
+         pch = 20,
+         cex = 2)
     # Need to suppress the warnings from abline()
     abline(lm(M ~ X),lwd = 1, col = "red")
     
@@ -123,14 +121,18 @@ server <- function(input, output) {
          M,
          main = "M -> Y",
          xlab = "M",
-         ylab = "Y")
+         ylab = "Y",
+         pch = 20,
+         cex = 2)
     abline(lm(Y ~ M + X), lwd = 1, col = "green")
     
     plot(X,
          Y,
          main = "X -> Y",
          xlab = "X",
-         ylab = "Y")
+         ylab = "Y",
+         pch = 20,
+         cex = 2)
     abline(lm(Y ~ X + M),lwd = 1, col = "blue")
     
   })
