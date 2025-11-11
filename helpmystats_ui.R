@@ -204,12 +204,12 @@ ui <- page_navbar(
     ),
     div(
       style = "width: 550px;
-              height: 250px;
+              height: 450px;
               margin: 0 auto;
               border: 1px solid black;",
       numericInput(
         inputId = "a",
-        label = "Standardized path from X to M",
+        label = "Correlation between X and M",
         value = 0,
         min = -1,
         max = 1,
@@ -217,7 +217,7 @@ ui <- page_navbar(
       ),
       numericInput(
         inputId = "b",
-        label = "Standardized path from M to Y",
+        label = "Correlation between M and Y",
         value = 0,
         min = -1,
         max = 1,
@@ -225,12 +225,13 @@ ui <- page_navbar(
       ),
       numericInput(
         inputId = "c",
-        label = "Standardized path from X to Y",
+        label = "Correlation between X and Y",
         value = 0,
         min = -1,
         max = 1,  
         step = 0.1
-      )),
+      ),
+      textOutput("mediation_eigenvalues")),
     div(
       class = "plot-div",
       plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")

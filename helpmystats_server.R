@@ -58,6 +58,26 @@ server <- function(input, output) {
   # Allow for changing the effects in the model
   #   - Track color of different points
   # Display the three scatterplots simultaneously
+  output$mediation_eigenvalues <- renderText({
+      a <- input$a
+      b <- input$b
+      c <- input$c
+      
+      # rx.m <- rm.x <- a
+      # rm.y <- ry.m <- b + c*a
+      # rx.y <- ry.x <- b*a + c
+      
+      rx.m <- rm.x <- a
+      rm.y <- ry.m <- b
+      rx.y <- ry.x <- c
+      
+      desired_cov <- matrix(c(1   , rx.m, rx.y,
+                              rm.x, 1   , rm.y,
+                              ry.x, ry.m,   1),
+                            nrow = 3,
+                            ncol = 3)
+      eigen(desired_cov)$values
+  })
   
   
   output$mediation_scatterplots <- renderPlot({
@@ -80,9 +100,13 @@ server <- function(input, output) {
         b <- input$b
         c <- input$c
         
+        # rx.m <- rm.x <- a
+        # rm.y <- ry.m <- b + c*a
+        # rx.y <- ry.x <- b*a + c
+        
         rx.m <- rm.x <- a
-        rm.y <- ry.m <- b + c*a
-        rx.y <- ry.x <- b*a + c
+        rm.y <- ry.m <- b
+        rx.y <- ry.x <- c
         
         desired_cov <- matrix(c(1   , rx.m, rx.y,
                                 rm.x, 1   , rm.y,
