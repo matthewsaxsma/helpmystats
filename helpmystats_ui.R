@@ -236,6 +236,6 @@ ui <- page_navbar(
       class = "plot-div",
       plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")
               )
-            )
+            ),
     )
 
