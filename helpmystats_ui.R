@@ -204,7 +204,7 @@ ui <- page_navbar(
     ),
     div(
       style = "width: 550px;
-              height: 450px;
+              height: 250px;
               margin: 0 auto;
               border: 1px solid black;",
       numericInput(
@@ -231,7 +231,8 @@ ui <- page_navbar(
         max = 1,  
         step = 0.1
       ),
-      textOutput("mediation_eigenvalues")),
+      # textOutput("mediation_eigenvalues")
+      ),
     div(
       class = "plot-div",
       plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")
