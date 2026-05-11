@@ -237,5 +237,52 @@ ui <- page_navbar(
       plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")
               )
             ),
+# Moderation --------------------------------------------------------------------
+
+  nav_panel(
+    title = "Moderation",
+    div(
+      class = "paragraph-text",
+      HTML(content_moderation_1)
+    ),
+    div(
+      style = "width: 550px;
+                height: 450px;
+                margin: 0 auto;
+                border: 1px solid black;",
+      numericInput(
+        inputId = "bx",
+        label = "Effect of X on Y",
+        value = 0,
+        min = -1,
+        max = 1,
+        step = 0.1
+      ),
+      numericInput(
+        inputId = "bm",
+        label = "Effect of Moderator on Y",
+        value = 0,
+        min = -1,
+        max = 1,
+        step = 0.1
+      ),
+      numericInput(
+        inputId = "bxm",
+        label = "Effect of Interaction Term",
+        value = 0,
+        min = -1,
+        max = 1,  
+        step = 0.1
+      ),
+    div(
+      class = "plot-div",
+      plotOutput(
+        outputId = "moderation_scatterplot", 
+        width = "100%", 
+        height = "100%"
+        )
     )
+  )
+  )
+)
 

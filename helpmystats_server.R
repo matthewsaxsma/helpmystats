@@ -79,7 +79,6 @@ server <- function(input, output) {
       eigen(desired_cov)$values
   })
   
-  
   output$mediation_scatterplots <- renderPlot({
     set.seed(417)
     tryCatch(
@@ -161,5 +160,47 @@ server <- function(input, output) {
     
   })
   
-
+# Moderation -------------------------------------------------------------------
+  
+  output$moderation_scatterplot <- renderPlot({
+    set.seed(417)
+    tryCatch(
+      expr = {
+        bx <- input$bx
+        bm <- input$bm
+        bxm <- input$bxm
+        
+        resid_variance <- 1 - (bx^2) - (bm^2) - (bxm^2)
+        
+        if(resid_variance < 0) {stop("Residual variance must be positive.")}
+        
+        # Generate data according to model with input effect sizes.
+        X <- scale(rnorm(n = 20,mean = 0, sd = 1))
+        M <- scale(rbinom(n = 20,1, prob = 0.5))
+        Y <- 0 + bx*X + bm*M + bxm *X*M + rnorm(n = 20,0,sd = sqrt(resid_variance))
+        theseColors = ifelse(M == M[1],"blue","red")
+        plot(
+          X,
+          Y,
+          pch = 20,
+          cex = 2,
+          col = theseColors,
+          main = "Moderation",
+          xlab = "X",
+          ylab = "Y"
+        )
+        
+        abline(lm(Y[M == M[1]] ~ X[M == M[1]]), col = "blue", lwd = 1.5)
+        abline(lm(Y[M != M[1]] ~ X[M != M[1]]), col = "red",  lwd = 1.5)
+        legend(
+          "topright",
+          legend = c("Group 1", "Group 2"), # G1 blue, G2 red
+          col = c("blue", "red"),
+          pch = 20
+        )
+      },
+      warning = function(w) {showNotification(w$message)},
+      error = function(e) {showNotification(e$message, type = "error")}
+    )
+  })
 }

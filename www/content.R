@@ -160,3 +160,13 @@ content_mediation_1 <-
 <br>
 
 <p>Let's explore this visually.</p>"
+
+# Moderation -------------------------------------------------------------
+
+content_moderation_1 <- 
+  "<h2 style='text-align: center;'> Moderation</h2>
+
+<p>Moderation is a tool for understanding how a variable, called a moderator, affects the <i>relationship</i> between two other variables.</p>
+<br>
+
+<p>Let's explore this visually.</p>"
