@@ -235,9 +235,13 @@ ui <- page_navbar(
       ),
     div(
       class = "plot-div",
-      plotOutput(outputId = "mediation_scatterplots", width = "100%", height = "100%")
-              )
-            ),
+      plotOutput(
+        outputId = "mediation_scatterplots", 
+        width = "100%",
+        height = "100%"
+        )
+      )
+    ),
 # Moderation --------------------------------------------------------------------
 
   nav_panel(
@@ -248,7 +252,7 @@ ui <- page_navbar(
     ),
     div(
       style = "width: 550px;
-                height: 450px;
+                height: 250px;
                 margin: 0 auto;
                 border: 1px solid black;",
       numericInput(
@@ -280,7 +284,7 @@ ui <- page_navbar(
       plotOutput(
         outputId = "moderation_scatterplot", 
         width = "100%", 
-        height = "100%"
+        height = "75%"
         )
     )
   )
