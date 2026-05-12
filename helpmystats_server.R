@@ -167,48 +167,123 @@ server <- function(input, output) {
     tryCatch(
       expr = {
         N <- 150
-        X <- rnorm(n = N,mean = 0, sd = 1)
-        M <- rbinom(n = N,1, prob = 0.5)
-        XM <- X*M
+        Conscientiousness <- rnorm(n = N,mean = 0, sd = 1)
+        Interest <- rnorm(n = N,mean = 0, sd = 1)
+        # NOT standardizing interaction term
+        Interaction_term <- Conscientiousness*Interest
         
-        bx <- input$bx
-        bm <- input$bm
-        bxm <- input$bxm
+        b1 <- input$b1
+        b2 <- input$b2
+        b3 <- input$b3
         
         # resid_variance <- 1 - (bx^2) - (bm^2) - (bxm^2)
         # 
         # if(resid_variance < 0) {stop("Residual variance must be positive.")}
         
         # Generate data according to model with input effect sizes.
-        Y <- 0 + bx*X + bm*M + bxm*XM + rnorm(n = N,0,sd = 1)
-        theseColors = ifelse(M == 0,"blue","red")
+        AcademicEffort <- 0 + b1*Conscientiousness + b2*Interest + b3*Interaction_term + rnorm(n = N,0,sd = 1)
         
+        Interest_normed <- (Interest - min(Interest)) / diff(range(Interest))
+        
+        theseColors = sapply(
+          Interest, 
+          FUN = function(x) {
+            
+            t <- (x - min(Interest)) / diff(range(Interest))
+            
+            # Push values away from the midpoint
+            t <- 0.5 + 0.5 * sign(t - 0.5) * abs(2 * (t - 0.5))^0.4
+            
+            rgb(
+              t,
+              .1,
+              1 - t
+            )
+          }
+        )
+        # theseColors = ifelse(M == 0,"blue","red")
+
         plot(
-          X,
-          Y,
+          Conscientiousness,
+          AcademicEffort,
           pch = 20,
           cex = 2,
           col = theseColors,
-          main = "Moderation",
-          xlab = "X",
-          ylab = "Y",
+          main = "CONIC Model",
+          xlab = "Conscietniousness",
+          ylab = "Interest",
           bty = "n"
         )
 
-        m0 <- lm(Y[M == 0] ~ X[M == 0])
-        m1 <- lm(Y[M == 1] ~ X[M == 1])
-
-        abline(m0, col = "blue", lwd = 1.5)
-        abline(m1, col = "red",  lwd = 1.5)
-        legend(
-          x = 1,
-          y = max(Y)*1.1,
-          legend = c("Group 1", "Group 2"), # G1 blue, G2 red
-          col = c("blue", "red"),
-          pch = 21,
-          cex = 1.5,
-          bty = "n"
+        
+        #################################################
+        # Save plotting region
+        par(
+          mar = c(5, 4, 4, 2),
+          oma = c(0, 0, 0, 8),
+          xpd = NA
         )
+        
+        # Coordinates for legend placement
+        xleft   <- 1.5
+        xright  <- 1.8
+        ybottom <- -2
+        ytop    <- 2
+        
+        # Create vertical gradient
+        gradient_vals <- seq(0, 1, length.out = 100)
+        
+        legend_colors <- sapply(
+          gradient_vals,
+          function(t) {
+            
+            t2 <- 0.5 + 0.5 * sign(t - 0.5) * abs(2 * (t - 0.5))^0.4
+            
+            rgb(
+              t2,
+              .1,
+              1 - t2
+            )
+          }
+        )
+        
+        image(
+          x = c(xleft, xright),
+          y = seq(ybottom, ytop, length.out = 100),
+          z = matrix(seq_along(gradient_vals), nrow = 1),
+          col = legend_colors,
+          add = TRUE
+        )
+        
+        # Border around legend
+        rect(
+          xleft,
+          ybottom,
+          xright,
+          ytop
+        )
+        
+        # Labels
+        text(xright + 0.3, ybottom, "Low Interest", adj = 0)
+        text(xright + 0.3, ytop, "High Interest", adj = 0)
+        box("plot",   col = "red")
+        box("figure", col = "blue")
+        box("outer",  col = "green")
+        #################################################
+        # m0 <- lm(Y[M == 0] ~ X[M == 0])
+        # m1 <- lm(Y[M == 1] ~ X[M == 1])
+        # 
+        # abline(m0, col = "blue", lwd = 1.5)
+        # abline(m1, col = "red",  lwd = 1.5)
+        # legend(
+        #   x = 1,
+        #   y = max(Y)*1.1,
+        #   legend = c("Group 1", "Group 2"), # G1 blue, G2 red
+        #   col = c("blue", "red"),
+        #   pch = 21,
+        #   cex = 1.5,
+        #   bty = "n"
+        # )
       },
       warning = function(w) {showNotification(w$message)},
       error = function(e) {showNotification(e$message, type = "error")}

@@ -256,25 +256,25 @@ ui <- page_navbar(
                 margin: 0 auto;
                 border: 1px solid black;",
       numericInput(
-        inputId = "bx",
-        label = "Effect of X on Y",
-        value = 0,
+        inputId = "b1",
+        label = "Effect of Conscientiousness on Academic Effort",
+        value = 0.48,
         min = -1,
         max = 1,
         step = 0.1
       ),
       numericInput(
-        inputId = "bm",
-        label = "Effect of Moderator on Y",
-        value = 0,
+        inputId = "b2",
+        label = "Effect of Interest on Acadmeic Effort",
+        value = 0.42,
         min = -1,
         max = 1,
         step = 0.1
       ),
       numericInput(
-        inputId = "bxm",
-        label = "Effect of Interaction Term",
-        value = 0,
+        inputId = "b3",
+        label = "Effect of Conscientiousness x Interest Interaction",
+        value = -0.09,
         min = -1,
         max = 1,  
         step = 0.1
