@@ -19,8 +19,10 @@
 .plot-div {
   width: 750px;
   height: 750px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid black;
+  display: block;
 }
 
 

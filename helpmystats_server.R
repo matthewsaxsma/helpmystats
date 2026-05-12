@@ -166,8 +166,9 @@ server <- function(input, output) {
     set.seed(417)
     tryCatch(
       expr = {
-        X <- rnorm(n = 20,mean = 0, sd = 1)
-        M <- rbinom(n = 20,1, prob = 0.5)
+        N <- 150
+        X <- rnorm(n = N,mean = 0, sd = 1)
+        M <- rbinom(n = N,1, prob = 0.5)
         XM <- X*M
         
         bx <- input$bx
@@ -179,7 +180,7 @@ server <- function(input, output) {
         # if(resid_variance < 0) {stop("Residual variance must be positive.")}
         
         # Generate data according to model with input effect sizes.
-        Y <- 0 + bx*X + bm*M + bxm*XM + rnorm(n = 20,0,sd = 1)
+        Y <- 0 + bx*X + bm*M + bxm*XM + rnorm(n = N,0,sd = 1)
         theseColors = ifelse(M == 0,"blue","red")
         
         plot(
@@ -190,16 +191,23 @@ server <- function(input, output) {
           col = theseColors,
           main = "Moderation",
           xlab = "X",
-          ylab = "Y"
+          ylab = "Y",
+          bty = "n"
         )
-        
-        abline(lm(Y[M == 0] ~ X[M == 0]), col = "blue", lwd = 1.5)
-        abline(lm(Y[M == 1] ~ X[M == 1]), col = "red",  lwd = 1.5)
+
+        m0 <- lm(Y[M == 0] ~ X[M == 0])
+        m1 <- lm(Y[M == 1] ~ X[M == 1])
+
+        abline(m0, col = "blue", lwd = 1.5)
+        abline(m1, col = "red",  lwd = 1.5)
         legend(
-          "topright",
+          x = 1,
+          y = max(Y)*1.1,
           legend = c("Group 1", "Group 2"), # G1 blue, G2 red
           col = c("blue", "red"),
-          pch = 20
+          pch = 21,
+          cex = 1.5,
+          bty = "n"
         )
       },
       warning = function(w) {showNotification(w$message)},

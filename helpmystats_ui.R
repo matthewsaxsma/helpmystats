@@ -236,9 +236,9 @@ ui <- page_navbar(
     div(
       class = "plot-div",
       plotOutput(
-        outputId = "mediation_scatterplots", 
+        outputId = "mediation_scatterplots",
         width = "100%",
-        height = "100%"
+        height = "100%" # this is % of div container
         )
       )
     ),
@@ -281,13 +281,13 @@ ui <- page_navbar(
       ),
     div(
       class = "plot-div",
+      # style = "width: 600px;",
       plotOutput(
-        outputId = "moderation_scatterplot", 
-        width = "100%", 
-        height = "75%"
+        outputId = "moderation_scatterplot",
+        width = "100%",
+        height = "80%" # this is % of div container
         )
     )
   )
   )
 )
-
