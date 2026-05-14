@@ -242,6 +242,7 @@ ui <- page_navbar(
         )
       )
     ),
+
 # Moderation --------------------------------------------------------------------
 
   nav_panel(
@@ -252,7 +253,7 @@ ui <- page_navbar(
     ),
     div(
       style = "width: 550px;
-                height: 250px;
+                height: 300px;
                 margin: 0 auto;
                 border: 1px solid black;",
       numericInput(

@@ -181,7 +181,7 @@ server <- function(input, output) {
         # if(resid_variance < 0) {stop("Residual variance must be positive.")}
         
         # Generate data according to model with input effect sizes.
-        AcademicEffort <- 0 + b1*Conscientiousness + b2*Interest + b3*Interaction_term + rnorm(n = N,0,sd = 1)
+        AcademicEffort <- 0 + b1*Conscientiousness + b2*Interest + b3*Interaction_term + rnorm(n = N,0,sd = .1)
         
         Interest_normed <- (Interest - min(Interest)) / diff(range(Interest))
         
@@ -203,32 +203,30 @@ server <- function(input, output) {
         )
         # theseColors = ifelse(M == 0,"blue","red")
 
+        
+        #################################################
+        # Save plotting region
+        par(
+          mar = c(5, 5, 4, 6),
+          xpd = NA # 
+        )
         plot(
           Conscientiousness,
           AcademicEffort,
           pch = 20,
           cex = 2,
           col = theseColors,
-          main = "CONIC Model",
-          xlab = "Conscietniousness",
-          ylab = "Interest",
-          bty = "n"
-        )
-
-        
-        #################################################
-        # Save plotting region
-        par(
-          mar = c(5, 4, 4, 2),
-          oma = c(0, 0, 0, 8),
-          xpd = NA
+          main = "",
+          xlab = "",
+          ylab = "",
+          bty = "n",
+          xlim = c(-4,4),
+          ylim = c(-4,4)
         )
         
-        # Coordinates for legend placement
-        xleft   <- 1.5
-        xright  <- 1.8
-        ybottom <- -2
-        ytop    <- 2
+        mtext("Conscientiousness", side = 1, cex = 2,line = 3)
+        mtext("Academic Effort", side = 2, cex = 2,line = 3)
+        mtext("CONIC Model", side = 3, cex = 2)
         
         # Create vertical gradient
         gradient_vals <- seq(0, 1, length.out = 100)
@@ -236,9 +234,7 @@ server <- function(input, output) {
         legend_colors <- sapply(
           gradient_vals,
           function(t) {
-            
             t2 <- 0.5 + 0.5 * sign(t - 0.5) * abs(2 * (t - 0.5))^0.4
-            
             rgb(
               t2,
               .1,
@@ -246,6 +242,11 @@ server <- function(input, output) {
             )
           }
         )
+        # Coordinates for legend placement
+        xleft   <- 3
+        xright  <- xleft + 0.3
+        ytop    <- 3
+        ybottom <- -3
         
         image(
           x = c(xleft, xright),
@@ -255,35 +256,10 @@ server <- function(input, output) {
           add = TRUE
         )
         
-        # Border around legend
-        rect(
-          xleft,
-          ybottom,
-          xright,
-          ytop
-        )
-        
         # Labels
-        text(xright + 0.3, ybottom, "Low Interest", adj = 0)
-        text(xright + 0.3, ytop, "High Interest", adj = 0)
-        box("plot",   col = "red")
-        box("figure", col = "blue")
-        box("outer",  col = "green")
+        text(xright + 0.25, ybottom, "Low Interest" , adj = 0,cex = 1.5)
+        text(xright + 0.25, ytop   , "High Interest", adj = 0,cex = 1.5)
         #################################################
-        # m0 <- lm(Y[M == 0] ~ X[M == 0])
-        # m1 <- lm(Y[M == 1] ~ X[M == 1])
-        # 
-        # abline(m0, col = "blue", lwd = 1.5)
-        # abline(m1, col = "red",  lwd = 1.5)
-        # legend(
-        #   x = 1,
-        #   y = max(Y)*1.1,
-        #   legend = c("Group 1", "Group 2"), # G1 blue, G2 red
-        #   col = c("blue", "red"),
-        #   pch = 21,
-        #   cex = 1.5,
-        #   bty = "n"
-        # )
       },
       warning = function(w) {showNotification(w$message)},
       error = function(e) {showNotification(e$message, type = "error")}
