@@ -167,6 +167,14 @@ content_moderation_1 <-
   "<h2 style='text-align: center;'> Moderation</h2>
 
 <p>Moderation is a tool for understanding how a variable, called a moderator, affects the <i>relationship</i> between two other variables.</p>
+
 <br>
 
-<p>Let's explore this visually.</p>"
+<p>Let's explore this visually by simulating data using the CONIC model.</p>
+
+<p>According to the CONIC model (Trautwein et al., 2019), both Conscientiousness and Interest positively predict Academic Effort on their own. However, each exhibits a compensatory effect, such that, for people low on Conscientiousness, the relationship between Interest and Academic Effort will be stronger than for people high on Conscientiousness.</p>
+
+<p>The default values are some results from a sample of US High School students reported in Table 4 in Bareis et al. (2024). Adjust the values to see how different values of main effects and the interaction affect the data.
+
+
+"

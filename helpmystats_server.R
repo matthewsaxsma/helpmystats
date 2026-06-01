@@ -177,13 +177,15 @@ server <- function(input, output) {
         b3 <- input$b3
         
         # resid_variance <- 1 - (bx^2) - (bm^2) - (bxm^2)
-        # 
+        
         # if(resid_variance < 0) {stop("Residual variance must be positive.")}
         
         # Generate data according to model with input effect sizes.
-        AcademicEffort <- 0 + b1*Conscientiousness + b2*Interest + b3*Interaction_term + rnorm(n = N,0,sd = .1)
-        
-        Interest_normed <- (Interest - min(Interest)) / diff(range(Interest))
+        AcademicEffort <- 0 + 
+          b1*scale(Conscientiousness) + 
+          b2*scale(Interest) + 
+          b3*scale(Interaction_term) + 
+          rnorm(n = N,0,sd = sqrt(1 - b1^2 - b2^2 - b3^2))
         
         theseColors = sapply(
           Interest, 
@@ -201,9 +203,6 @@ server <- function(input, output) {
             )
           }
         )
-        # theseColors = ifelse(M == 0,"blue","red")
-
-        
         #################################################
         # Save plotting region
         par(
