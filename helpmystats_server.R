@@ -203,7 +203,6 @@ server <- function(input, output) {
             )
           }
         )
-        #################################################
         # Save plotting region
         par(
           mar = c(5, 5, 4, 6),
@@ -258,7 +257,7 @@ server <- function(input, output) {
         # Labels
         text(xright + 0.25, ybottom, "Low Interest" , adj = 0,cex = 1.5)
         text(xright + 0.25, ytop   , "High Interest", adj = 0,cex = 1.5)
-        #################################################
+        
       },
       warning = function(w) {showNotification(w$message)},
       error = function(e) {showNotification(e$message, type = "error")}

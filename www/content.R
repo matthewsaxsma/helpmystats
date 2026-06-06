@@ -176,5 +176,25 @@ content_moderation_1 <-
 
 <p>The default values are some results from a sample of US High School students reported in Table 4 in Bareis et al. (2024). Adjust the values to see how different values of main effects and the interaction affect the data.
 
-
 "
+
+# SEM  -------------------------------------------------------------------------
+
+
+content_sem_1 <- '
+<p> Strucutral equation modeling (SEM) is a technique researchers use to investigate the relationships between many variables at the same time. SEM is not something "separate" from linear regression, mediation, and moderation. Rather, SEM can be used to <i>do</i> all those things.</p>
+
+<p>When you use SEM, you are saying, "Ok, I propose that these my are correlated according to these specific relationships between the variables." Then, your SEM program tells you how well the *actual* correlations between your variables resemble the correlations you proposed.</p>'
+
+content_sem_2 <- "
+<p>Let's show this with a simple example involving three variables: Maternal Sensitivity, Attachment Security, and Subjective Well-Being.</p>
+
+<p>Let's say my hypothesis is that having sensitive mothers causes infants to develop secure attachments, and that secure attachment relationships are the primary determinant of people's subjective well-being.
+<br>
+These statements have some consequences for what we would expect for the correlations between Maternal Sensitivity, Attachment Security, and Subjective Well-Being. First, we would expect a correlation between Maternal Sensitivty and Attachment Security. We also expect a correlation between Attachment Security and Subjective Well-Being. And what are we expecting for the relationship between Maternal Sensitivity and Subjective Well-Being? Well, if we propose that Maternal Sensitivity causes Attachment Security, and Attachment Security causes Subjective Well-Being, then we would expect a correlation between Maternal Sensitivity and Subjective Well-Being. However, this correlation would be <i>because</i> of Attachment Security.
+<br>
+We can depict these correlations with a diagram:
+</p>
+"
+# Insert DAG here...
+

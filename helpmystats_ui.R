@@ -9,7 +9,7 @@ ui <- page_navbar(
 # Random Variables -------------------------------------------------------------
 
   nav_panel(
-    title = "Random Variables, Statistics",
+    title = "Random Variables",
     div(
       class = "paragraph-text",
       HTML(content_random_variables1)
@@ -290,5 +290,13 @@ ui <- page_navbar(
         )
     )
   )
+  ),
+  
+  nav_panel(
+    title = "Structural Equation Modeling",
+    div(
+      class = "",
+      HTML()
+    )
   )
 )
